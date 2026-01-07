@@ -4,7 +4,7 @@
 
 This repository contains my solution to the DevOps Challenge.  
 The project demonstrates secure containerization, Kubernetes deployment using Helm, infrastructure provisioning with Terraform, CI validation using GitHub Actions, and local automation using shell scripts.
-The project starts with a simple Python Flask application that exposes a REST API on port 80. The application is containerized using a secure Dockerfile that creates and runs the process as a non-root user while still allowing it to bind to port 80 using Linux capabilities. This Docker image is then built locally and, depending on the environment, either loaded into Minikube for local development or pushed to a container registry for environments that require image pulling. Infrastructure resources such as the Kubernetes namespace and resource quota are provisioned using Terraform, ensuring that the application runs within defined limits. The application itself is deployed using a Helm chart that defines the Kubernetes Deployment and Service along with security context configurations like a read-only root filesystem.
+The project starts with a simple Python Flask application that exposes a REST API on port 80. The application is containerized using a secure Dockerfile that creates and runs the process as a non-root user while still allowing it to bind to port 80 using Linux capabilities. This Docker image is then built locally and, depending on the environment, either loaded into Minikube for local development or pushed to a container registry for environments that require image pulling. Infrastructure resources such as the Kubernetes namespace and resource quota are provisioned using Terraform, ensuring that the application runs within defined limits. The application itself is deployed using a Helm chart that defines the Kubernetes Deployment and Service, along with security context configurations like a read-only root filesystem.
 
 The CI pipeline, implemented using GitHub Actions, validates the entire workflow on every push. It checks out the code, lints the Python application, validates the Helm chart, verifies Terraform syntax, and ensures the Docker image can be built successfully. Once deployed, the application runs inside Kubernetes as a non-root container listening on port 80 and is validated using a script that confirms the runtime user, port configuration, and API response. The application is accessed using Kubernetes port-forwarding, which allows safe local verification without exposing the service publicly, completing a secure and production-aligned DevOps workflow.
 
@@ -86,7 +86,7 @@ Application pod reaches Running state
 ```
 ![Pod Output](screenshots/ns-created.png)
 
-![Pod Output](screenshots/resource-quota.png)
+![Pod Output](screenshots/Resource-quota.png)
 
 ![Pod Output](screenshots/Pod-running.png)
 
@@ -152,5 +152,13 @@ API response:
 {"message": "Hello, Candidate", "version": "1.0.0"}
 ```
 
-![Repository Structure](screenshots/repo-structure.png)
+![Repository Structure](screenshots/pod-description.png)
+
+
+![Repository Structure](screenshots/port-forwarding.png)
+
+
+![Repository Structure](screenshots/output.png)
+
+
 
