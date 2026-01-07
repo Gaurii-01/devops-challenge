@@ -24,11 +24,20 @@ terraform init
 terraform apply -auto-approve
 cd ..
 
-# Step 4: Deploy using Helm
+#Step 4: Deply to Helm
 echo "Deploying application using Helm..."
-helm upgrade --install devops-challenge ./helm/devops-challenge \
-  --namespace devops-challenge \
-  --create-namespace \
-  --values ./helm/devops-challenge/values.yaml
+
+if command -v minikube >/dev/null 2>&1; then
+  echo "Minikube detected - using local Docker image"
+  helm upgrade --install devops-challenge ./helm/devops-challenge \
+    --namespace devops-challenge \
+    --create-namespace \
+    -f helm/devops-challenge/values-minikube.yaml
+else
+  echo "Minikube not detected - using Docker Hub image"
+  helm upgrade --install devops-challenge ./helm/devops-challenge \
+    --namespace devops-challenge \
+    --create-namespace
+fi
 
 echo "Local deployment completed successfully!"

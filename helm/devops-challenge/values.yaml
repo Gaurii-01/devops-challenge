@@ -1,9 +1,9 @@
 replicaCount: 1
 
 image:
-  repository: devops-challenge
+  repository: gaurikulkarni01/devops-challenge
   tag: "latest"
-  pullPolicy: Never
+  pullPolicy: IfNotPresent
 
 service:
   type: ClusterIP
