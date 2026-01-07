@@ -2,11 +2,9 @@
 
 ## End-to-End Application Workflow
 
-This repository contains my solution to the DevOps Challenge.  
-The project demonstrates secure containerization, Kubernetes deployment using Helm, infrastructure provisioning with Terraform, CI validation using GitHub Actions, and local automation using shell scripts.
-The project starts with a simple Python Flask application that exposes a REST API on port 80. The application is containerized using a secure Dockerfile that creates and runs the process as a non-root user while still allowing it to bind to port 80 using Linux capabilities. This Docker image is then built locally and, depending on the environment, either loaded into Minikube for local development or pushed to a container registry for environments that require image pulling. Infrastructure resources such as the Kubernetes namespace and resource quota are provisioned using Terraform, ensuring that the application runs within defined limits. The application itself is deployed using a Helm chart that defines the Kubernetes Deployment and Service, along with security context configurations like a read-only root filesystem.
+This repository contains my solution to the DevOps Challenge, showcasing secure containerization, Kubernetes deployment using Helm, infrastructure provisioning with Terraform, and CI validation using GitHub Actions. A simple Python Flask application exposes a REST API on port 80 and is containerized using a secure Dockerfile that runs as a non-root user while allowing privileged port binding through Linux capabilities. The image is used locally with Minikube or pulled from a container registry depending on the environment, while Terraform provisions the required Kubernetes namespace and resource quota and Helm manages the application deployment with appropriate security configurations.
 
-The CI pipeline, implemented using GitHub Actions, validates the entire workflow on every push. It checks out the code, lints the Python application, validates the Helm chart, verifies Terraform syntax, and ensures the Docker image can be built successfully. Once deployed, the application runs inside Kubernetes as a non-root container listening on port 80 and is validated using a script that confirms the runtime user, port configuration, and API response. The application is accessed using Kubernetes port-forwarding, which allows safe local verification without exposing the service publicly, completing a secure and production-aligned DevOps workflow.
+The CI pipeline validates the workflow on every push by linting the application, validating Helm and Terraform configurations, and building the Docker image. The deployed application is verified using Kubernetes port-forwarding and a validation script that confirms the runtime user, port configuration, and API response, completing a secure and production-aligned deployment.
 
 
 ---
@@ -58,7 +56,7 @@ The following tools are required to run this solution locally:
 ```
 git clone https://github.com/Gaurii-01/devops-challenge.git
 ```
-cd into the repo directory
+Get into the working directory
 ```
 cd devops-challenge
 ```
