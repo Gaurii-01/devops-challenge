@@ -159,4 +159,33 @@ API response:
 ![Repository Structure](screenshots/output.png)
 
 
+---
 
+# CD Workflow Overview
+
+```
+.github/workflows/cd.yml
+```
+
+The deployment flow is as follows:
+
+- A code change is pushed to the main branch
+
+- GitHub Actions triggers the CD workflow
+
+- The workflow runs on a self-hosted runner inside the EC2 environment
+
+- A new Docker image is built from the updated source code
+
+- The image is pushed securely to Docker Hub
+
+- Helm upgrades the existing Kubernetes release
+
+- Kubernetes performs a rolling update of the application pods
+
+- Deployment success is verified using rollout status checks
+
+This approach ensures zero downtime deployments and keeps the cluster state consistent with the latest source code.
+
+
+![EC2 Output](screenshots/EC2output.png)
