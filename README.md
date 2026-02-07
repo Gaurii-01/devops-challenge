@@ -188,4 +188,4 @@ The deployment flow is as follows:
 This approach ensures zero downtime deployments and keeps the cluster state consistent with the latest source code.
 
 
-![EC2 Output](screenshots/EC2output.png)
+![EC2 Output](screenshots/EC2_Output.png)
